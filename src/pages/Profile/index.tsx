@@ -33,16 +33,23 @@ const Profile = () => {
   const [city, setCity] = useState("");
   const [relationship, setRelationship] = useState("");
 
+  // @ts-ignore
+  const userID: string | number = localStorage.getItem("userId")
+
+  console.log(userID);
+
   useEffect(() => {
     fetch("http://localhost:3000/informations")
       .then((response) => response.json())
       .then((data) => {
-        setName(data[0].name);
-        setBirth(data[0].birth);
-        setJob(data[0].job);
-        setCountry(data[0].country);
-        setCity(data[0].city);
-        setRelationship(data[0].relationship);
+        const values = data.find(person => person.id == userID);
+
+        setName(values.name);
+        setBirth(values.birth);
+        setJob(values.job);
+        setCountry(values.country);
+        setCity(values.city);
+        setRelationship(values.relationship);
       })
       .catch((error) => console.error("Erro:", error));
   }, []);
