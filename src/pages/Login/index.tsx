@@ -84,6 +84,7 @@ const Login = () => {
           setEnteredPasswordTouched(false);
           setEnteredEmail("");
 
+          localStorage.setItem("userId", user.id);
           navigate("/profile");
         } else {
           navigate("/");
