@@ -64,16 +64,22 @@ const Login = () => {
     if (!enteredPasswordIsValid) {
       return;
     }
+
     try {
       const response = await fetch("http://localhost:3000/informations");
       const data = await response.json();
 
-      if (data.length === 0) {
+      const user = data.find(
+          (u: any) => u.email === enteredEmail && u.password === enteredPassword
+      );
+
+      if (!user) {
+        // User not found or invalid credentials
         setisSave(true);
-        return;
       } else {
         setIsConnected(true);
         if (formIsValid && isConnected) {
+          // Successful login
           setEnteredPassword("");
           setEnteredPasswordTouched(false);
           setEnteredEmail("");
