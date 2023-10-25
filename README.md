@@ -1,14 +1,11 @@
 # Project UOLkut
 
 Welcome !
-This is the second project carried out within the CompassUOL Scholarship Program. The project is a prototype of a social network.
+This is the third project carried out within the CompassUOL Scholarship Program. The project is a prototype of a social network with a mock API made with JSON-SERVER
 
-**Developers:**
+**Developer:**
 
 - Gabriel Vieira
-- Luiz Pedro
-- Samuel Alcantara
-- Vitor Menezes
 
 ## Tecnologies Used
 
