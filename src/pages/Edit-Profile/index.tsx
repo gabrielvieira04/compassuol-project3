@@ -28,19 +28,24 @@ const Profile = () => {
     { _id: "5", name: "Preocupado" },
   ];
 
+  // @ts-ignore
+  const userID: string | number = localStorage.getItem("userId")
+
   useEffect(() => {
     fetch("http://localhost:3000/informations")
       .then((response) => response.json())
       .then((data) => {
-        setinformations(data[0]);
-        setEmail(data[0].email);
-        setPassword(data[0].password);
-        setName(data[0].name);
-        setBirth(data[0].birth);
-        setJob(data[0].job);
-        setCountry(data[0].country);
-        setCity(data[0].city);
-        setSelecValue(data[0].selectField);
+        const values = data.find(person => person.id == userID);
+
+        setinformations(values);
+        setEmail(values.email);
+        setPassword(values.password);
+        setName(values.name);
+        setBirth(values.birth);
+        setJob(values.job);
+        setCountry(values.country);
+        setCity(values.city);
+        setSelecValue(values.selectField);
       })
       .catch((error) => console.error("Erro:", error));
   }, []);
@@ -58,7 +63,7 @@ const Profile = () => {
       selectField: selectValue,
     };
 
-    fetch("http://localhost:3000/informations/1", {
+    fetch(`http://localhost:3000/informations/${userID}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
